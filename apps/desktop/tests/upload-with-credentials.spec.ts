@@ -105,7 +105,7 @@ describe('credential launcher destination', () => {
 
   it('rejects child credentials that do not match the explicit launcher selection', () => {
     expect(() => resolveCredentialUploadEnvironment(fileEnvironment, { ...injectedEnvironment,
-      DSH_DESKTOP_AUTO_UPDATE_ENV: 'production',
+      DSH_DESKTOP_AUTO_UPDATE_ENV: 'production', DOWNLOAD_PROD_ORIGIN: 'https://downloads.example.com',
     }, 'test', 'test-bucket', 'win-x64')).toThrow(/differs from its explicit arguments/u)
     expect(() => resolveCredentialUploadEnvironment(fileEnvironment, { ...injectedEnvironment,
       DOWNLOAD_TEST_COS_SECRET_KEY: '',

@@ -265,27 +265,26 @@ describe('product icon set', () => {
 })
 
 describe('FishLogo', () => {
-  it('renders the fish path in currentColor at the native ratio', () => {
+  it('renders the generated logo path in currentColor at its native ratio', () => {
     const { container } = render(<primitives.FishLogo />)
     const svg = container.querySelector('svg')!
+    const { width, height } = primitives.FISH_LOGO_VIEWBOX
     expect(svg.getAttribute('width')).toBe('24')
-    expect(Number(svg.getAttribute('height'))).toBeCloseTo(17.66, 1)
-    expect(svg.getAttribute('viewBox')).toBe('0 0 23.16 17.04')
+    expect(Number(svg.getAttribute('height'))).toBeCloseTo((24 * height) / width, 1)
+    expect(svg.getAttribute('viewBox')).toBe(`0 0 ${width} ${height}`)
     expect(container.querySelectorAll('path')).toHaveLength(1)
     expect(container.innerHTML).toContain('currentColor')
-    expect(container.innerHTML).not.toContain('M0 0L23.16')
   })
 })
 
 describe('BrandWordmark', () => {
-  it('can render the name artwork with or without its leading mark', () => {
+  it('renders the product name with or without its leading mark', () => {
     const view = render(<primitives.BrandWordmark />)
-    const svg = view.container.querySelector('svg')!
-    expect(svg.getAttribute('width')).toBe('182')
-    expect(svg.getAttribute('viewBox')).toBe('0 0 182 24')
+    expect(view.container.querySelectorAll('svg')).toHaveLength(1)
+    expect(view.container.textContent).not.toBe('')
 
     view.rerender(<primitives.BrandWordmark includeMark={false} />)
-    expect(svg.getAttribute('width')).toBe('156')
-    expect(svg.getAttribute('viewBox')).toBe('26 0 156 24')
+    expect(view.container.querySelectorAll('svg')).toHaveLength(0)
+    expect(view.container.textContent).not.toBe('')
   })
 })

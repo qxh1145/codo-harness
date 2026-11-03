@@ -1,5 +1,5 @@
 import OTel from '@deepseek-ai/dsh-otel'
-/** Desktop-only collector policy and bounded shutdown against an unresponsive receiver. */
+/** Product analytics never load in the enterprise fork, on any launch profile. */
 import { createServer } from 'node:http'
 import { once } from 'node:events'
 import { fileURLToPath } from 'node:url'
@@ -12,7 +12,7 @@ import { afterEach, expect, it, onTestFinished, vi } from 'vitest'
 
 afterEach(() => { vi.unstubAllEnvs() })
 
-it.each(['desktop', 'web'])('limits collection and its shutdown to the Desktop launch: %s', async (profile) => {
+it.each(['desktop', 'web'])('keeps product analytics unloaded: %s', async (profile) => {
   const received = Promise.withResolvers<undefined>()
   const server = createServer((req) => { req.resume(); req.once('end', () => { received.resolve(undefined) }) })
   server.listen(0, '127.0.0.1')
@@ -41,46 +41,8 @@ it.each(['desktop', 'web'])('limits collection and its shutdown to the Desktop l
   await ctx.loader.root.update(entries)
   await ctx.loader.await()
   const entry = ctx.loader.resolve('desktop-product-telemetry')
-  expect(entry.disabled).toBe(profile !== 'desktop')
-  if (profile !== 'desktop') {
-    expect(ctx.get('productTelemetry')).toBeUndefined()
-    expect(ctx.get('productAnalytics')).toBeUndefined()
-    return
-  }
-  expect(rows[0]!.config).toMatchObject({
-    scheduledDelayMillis: 30000, timeoutMillis: 15000, exportTimeoutMillis: 20000, shutdownTimeoutMillis: 2000,
-  })
-  const analytics = ctx.productAnalytics
-  const analyticsFiber = ctx.loader.resolve('product-analytics').fiber
-  const telemetryFiber = entry.fiber
-  const lifetime = new AbortController()
-  onTestFinished(() => { lifetime.abort() })
-  const policy = analytics.watchPolicy(lifetime.signal)[Symbol.asyncIterator]()
-  expect(await policy.next()).toEqual({ value: true, done: false })
-  for (const enabled of [false, true]) {
-    const changed = policy.next()
-    await ctx.loader.root.update(entries.map(row => row.id === 'product-analytics'
-      ? { ...row, config: { ...row.config as Record<string, unknown>, enabled } } : row))
-    await ctx.loader.await()
-    expect(await changed).toEqual({ value: enabled, done: false })
-    expect(ctx.loader.resolve('product-analytics').fiber === analyticsFiber).toBe(true)
-    expect(entry.fiber === telemetryFiber).toBe(true)
-    if (!enabled) {
-      await analytics.report({ eventName: 'desktop_app_launch', timestamp: 1, attributes: {} })
-      expect(identity).not.toHaveBeenCalled()
-    }
-  }
-  const emit = vi.spyOn(ctx.productTelemetry, 'emit')
-  await analytics.report({ eventName: 'desktop_app_launch', timestamp: 1, attributes: {} })
-  expect(emit).toHaveBeenCalledOnce()
-  const attributes = emit.mock.calls[0]?.[0].attributes
-  expect(attributes?.app_version).toBe('test-version')
-  expect(typeof attributes?.os_name).toBe('string')
-  expect(typeof attributes?.memory_total_bytes).toBe('number')
-  lifetime.abort()
-  await policy.return?.()
-  ctx.productTelemetry.emit({ eventName: 'desktop_upgrade_install_restart_click', body: 'upgrade', timestamp: Date.now() })
-  const disposal = entry.fiber!.dispose()
-  await received.promise
-  await disposal
+  expect(entry.disabled).toBe(true)
+  expect(ctx.get('productTelemetry')).toBeUndefined()
+  expect(ctx.get('productAnalytics')).toBeUndefined()
+  expect(identity).not.toHaveBeenCalled()
 })

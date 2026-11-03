@@ -1,6 +1,5 @@
-DeepSeek Harness
-DeepSeek Harness
-Welcome to DeepSeek Harness
-Build potential. Explore intelligence.
-Sign in
+Agent Workspace
+Agent Workspace
+Welcome to Agent Workspace
+
 Add API Key
