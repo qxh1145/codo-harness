@@ -1,5 +1,5 @@
 /**
- * Named wire types for the Agent Workspace SDK runtime protocol: its
+ * Named wire types for the CODO HARNESS SDK runtime protocol: its
  * request/result pairs and server-to-client notification payloads
  * exchanged over the newline-delimited JSON-RPC stdio transport. The server
  * plugin (`@deepseek-ai/dsh-sdk-jsonrpc-server`) and SDK clients share these shapes;

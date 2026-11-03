@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Ferramentas de desenvolvedor",
-    "description": "Para solução de problemas: veja em «Registro da sessão» o que o Agent Workspace registrou de uma sessão, consulte contexto, tempos, cache e custo de ferramentas por turno e etapa na aba «Estatísticas» e depure o backend do Agent Workspace no Chrome DevTools.",
+    "description": "Para solução de problemas: veja em «Registro da sessão» o que o CODO HARNESS registrou de uma sessão, consulte contexto, tempos, cache e custo de ferramentas por turno e etapa na aba «Estatísticas» e depure o backend do CODO HARNESS no Chrome DevTools.",
     "detail": "docs/DETAIL.md"
   }
 }

@@ -36,7 +36,7 @@ export const de = {
   'subtitle.expand': 'Beschreibung für {name} ausklappen',
   'subtitle.collapse': 'Beschreibung für {name} einklappen',
   'back': 'Zurück',
-  'brand.localBuild': 'Agent Workspace',
+  'brand.localBuild': 'CODO HARNESS',
   'workspace.defaultName': 'Standardarbeitsbereich',
   'unknown': 'Unbekannt',
   'none': 'Keine',

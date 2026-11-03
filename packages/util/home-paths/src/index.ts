@@ -1,5 +1,5 @@
 /**
- * Shared filesystem path helpers for Agent Workspace user data.
+ * Shared filesystem path helpers for CODO HARNESS user data.
  *
  * @module @deepseek-ai/dsh-home-paths
  */
@@ -8,13 +8,13 @@ import { opendir, realpath } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { basename, dirname, join, resolve } from 'node:path'
 
-/** Directory name for the default Agent Workspace home under the OS home. */
+/** Directory name for the default CODO HARNESS home under the OS home. */
 export const DSH_HOME_DIR_NAME = '.dsh'
 
-/** Stable user-facing display form for the default Agent Workspace home. */
+/** Stable user-facing display form for the default CODO HARNESS home. */
 export const DEFAULT_DSH_HOME_DISPLAY = `~/${DSH_HOME_DIR_NAME}`
 
-/** Environment variable that overrides the default Agent Workspace home. */
+/** Environment variable that overrides the default CODO HARNESS home. */
 export const DSH_HOME_ENV = 'DSH_HOME'
 
 /** Directory name for the default shared agent configuration root under the OS home. */
@@ -64,7 +64,7 @@ export async function canonicalizeWatchPath(path: string): Promise<string> {
 }
 
 /**
- * Resolve the default Agent Workspace home using Node's platform path rules.
+ * Resolve the default CODO HARNESS home using Node's platform path rules.
  * @returns the absolute default harness home path.
  */
 export function defaultDshHome(): string {
@@ -122,7 +122,7 @@ function rootDisplay(resolvedRoot: string, defaultRoot: string, defaultLabel: st
 }
 
 /**
- * Resolve the single-root Agent Workspace home.
+ * Resolve the single-root CODO HARNESS home.
  *
  * Precedence, highest first: an explicit configured path, `$DSH_HOME`, then
  * `~/.dsh`. The harness keeps all user data under one root. An empty or
@@ -141,7 +141,7 @@ export function resolveDshHome(configured?: string, env: Record<string, string |
  *
  * Precedence, highest first: an explicit configured path, `$DSH_AGENTS_HOME`,
  * then `~/.agents`. The root holds configuration shared with other agent tools,
- * so it stays independent of the Agent Workspace home. An empty or
+ * so it stays independent of the CODO HARNESS home. An empty or
  * whitespace-only `$DSH_AGENTS_HOME` is treated as unset, so a blank override
  * never resolves the root to the current working directory.
  * @param configured - explicit shared-root override, which has highest precedence.
@@ -153,7 +153,7 @@ export function resolveAgentsHome(configured?: string, env: Record<string, strin
 }
 
 /**
- * Join path segments onto the resolved Agent Workspace home.
+ * Join path segments onto the resolved CODO HARNESS home.
  * @param segments - path segments appended to the Harness home; an empty list returns the home itself.
  * @returns the normalized absolute joined path.
  */

@@ -1,6 +1,6 @@
 [
   {
-    "label": "About Agent Workspace",
+    "label": "About CODO HARNESS",
     "role": "about"
   },
   {
@@ -24,7 +24,7 @@
   },
   {
     "role": "hide",
-    "label": "Hide Agent Workspace"
+    "label": "Hide CODO HARNESS"
   },
   {
     "role": "hideOthers",
@@ -39,6 +39,6 @@
   },
   {
     "role": "quit",
-    "label": "Quit Agent Workspace"
+    "label": "Quit CODO HARNESS"
   }
 ]

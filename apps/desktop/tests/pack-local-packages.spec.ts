@@ -35,7 +35,7 @@ function fixture(profile: 'local' | 'official' = 'local'): string {
   }))
   write(root, 'packages/client/probe/lib/index.js', 'export const probe = true\n')
   write(root, 'packages/client/probe/lib/client.js', 'export const client = true\n')
-  write(root, 'apps/web/dist/index.html', '<title>Agent Workspace</title>\n')
+  write(root, 'apps/web/dist/index.html', '<title>CODO HARNESS</title>\n')
   writeClientBuildRecord(root, resolveClientBuildEnvironment(metadata, profile))
   return root
 }

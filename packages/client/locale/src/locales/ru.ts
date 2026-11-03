@@ -36,7 +36,7 @@ export const ru = {
   'subtitle.expand': 'Развернуть описание {name}',
   'subtitle.collapse': 'Свернуть описание {name}',
   'back': 'Назад',
-  'brand.localBuild': 'Agent Workspace',
+  'brand.localBuild': 'CODO HARNESS',
   'workspace.defaultName': 'Рабочая область по умолчанию',
   'unknown': 'Неизвестно',
   'none': 'Нет',

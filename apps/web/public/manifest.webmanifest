@@ -1,6 +1,6 @@
 {
-  "name": "Agent Workspace",
-  "short_name": "Workspace",
+  "name": "CODO HARNESS",
+  "short_name": "CODO",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -309,7 +309,7 @@ describe('DiscoverSection', () => {
     expect(openPackage).toHaveBeenCalledWith('dsh-b')
     fireEvent.click(git.getByRole('button', { name: en.backToList }))
     fireEvent.click(card('dsh-g').getByRole('button', { name: 'View dsh-g' }))
-    expect(screen.getAllByText('This version is not compatible with the running Agent Workspace 0.2.0; it requires Agent Workspace 0.1.0.')).toHaveLength(2)
+    expect(screen.getAllByText('This version is not compatible with the running CODO HARNESS 0.2.0; it requires CODO HARNESS 0.1.0.')).toHaveLength(2)
     fireEvent.click(screen.getByRole('button', { name: en.backToList }))
     fireEvent.click(card('dsh-h').getByRole('button', { name: 'View dsh-h' }))
     expect(screen.getAllByText(en.exempted)).toHaveLength(2)
@@ -355,7 +355,7 @@ describe('DiscoverSection', () => {
     expect(install).toHaveBeenCalledWith({ spec: 'dsh-v@3.0.0-rc.1', title: 'dsh-v', version: '3.0.0-rc.1' })
   })
 
-  it('marks exempted versions and offers no version of a bundle Agent Workspace provides', () => {
+  it('marks exempted versions and offers no version of a bundle CODO HARNESS provides', () => {
     const name = 'dsh-x'
     const exempted = release(name, '2.0.0', { compatibility: { ...INCOMPATIBLE, exempted: true } })
     const entries: MarketListingEntry[] = [

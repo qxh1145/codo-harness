@@ -36,7 +36,7 @@ export const pt = {
   'subtitle.expand': 'Expandir descrição de {name}',
   'subtitle.collapse': 'Recolher descrição de {name}',
   'back': 'Voltar',
-  'brand.localBuild': 'Agent Workspace',
+  'brand.localBuild': 'CODO HARNESS',
   'workspace.defaultName': 'Espaço de trabalho padrão',
   'unknown': 'Desconhecido',
   'none': 'Nenhum',

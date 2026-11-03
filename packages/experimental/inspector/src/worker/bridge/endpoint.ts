@@ -153,7 +153,7 @@ export class InspectorEndpoint {
       },
       close: () => { socket.close(1008, 'invalid CDP request') },
     }
-    const target = { targetId: this.config.targetId, title: 'Agent Workspace Host' }
+    const target = { targetId: this.config.targetId, title: 'CODO HARNESS Host' }
     const session = new CdpSession(
       transport,
       target,
@@ -236,7 +236,7 @@ export class InspectorEndpoint {
     return {
       id: this.config.targetId,
       type: 'page',
-      title: 'Agent Workspace Host',
+      title: 'CODO HARNESS Host',
       description: 'Experimental cross-realm Inspector target',
       url: 'dsh://host',
       webSocketDebuggerUrl: this.cdpUrl(),

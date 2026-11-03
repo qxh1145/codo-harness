@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Outils de développement",
-    "description": "Pour le dépannage : consultez dans « Journal de session » ce que Agent Workspace a enregistré pour une session, examinez le contexte, les durées, le cache et le coût des outils par tour et étape dans l’onglet « Statistiques », et déboguez le backend de Agent Workspace dans Chrome DevTools.",
+    "description": "Pour le dépannage : consultez dans « Journal de session » ce que CODO HARNESS a enregistré pour une session, examinez le contexte, les durées, le cache et le coût des outils par tour et étape dans l’onglet « Statistiques », et déboguez le backend de CODO HARNESS dans Chrome DevTools.",
     "detail": "docs/DETAIL.md"
   }
 }

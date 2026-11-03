@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Agent Workspace SDK back-end do subagente",
+    "title": "CODO HARNESS SDK back-end do subagente",
     "description": "Execute o Harness em um subprocesso por meio do TypeScript SDK e JSON-RPC em entrada e saída padrão."
   }
 }

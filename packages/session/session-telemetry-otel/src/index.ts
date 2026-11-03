@@ -1,5 +1,5 @@
 /**
- * OpenTelemetry Service Provider for the Agent Workspace telemetry capability.
+ * OpenTelemetry Service Provider for the CODO HARNESS telemetry capability.
  *
  * Authorizes feedback-bounded capture and hands complete event strings to the
  * Session-log reporter. This plugin owns resource identity and an outer

@@ -51,10 +51,10 @@ describe('installer preparation preserves application dependencies', () => {
         metadata: { value: metadata },
       })
       const appInfo = new AppInfo(metadataPackager, undefined)
-      expect(appInfo.companyName).toBe('Your Company')
-      expect(appInfo.copyright).toBe(`Copyright © ${new Date().getFullYear()} Agent Workspace`)
+      expect(appInfo.companyName).toBe('CODO')
+      expect(appInfo.copyright).toBe(`Copyright © ${new Date().getFullYear()} CODO HARNESS`)
       if (platform === 'win32') {
-        expect(expandMacro(config.nsis.uninstallDisplayName, null, appInfo, {}, false)).toBe('Agent Workspace')
+        expect(expandMacro(config.nsis.uninstallDisplayName, null, appInfo, {}, false)).toBe('CODO HARNESS')
         expect(config.nsis.installerLanguages).toEqual(readInstallerLocales().map(locale => locale.id))
       }
       const aboutIcon = config.extraResources.find(resource => resource.to === 'icon.png')
@@ -99,7 +99,7 @@ describe('installer preparation preserves application dependencies', () => {
       DSH_DESKTOP_TARGET_ARCH: 'x64',
       DSH_DESKTOP_UNSIGNED: '1',
     }, 'win32', 'x64')
-    expect(config.artifactName).toBe('agent-workspace-${version}-${os}-${arch}-unsigned.${ext}')
+    expect(config.artifactName).toBe('codo-harness-${version}-${os}-${arch}-unsigned.${ext}')
   })
 
   it('packages every preload entry point the shell loads', async () => {

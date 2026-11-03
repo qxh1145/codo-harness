@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "Your Company"
+    "name": "CODO"
   },
   "type": "module",
   "main": "lib/main.js",

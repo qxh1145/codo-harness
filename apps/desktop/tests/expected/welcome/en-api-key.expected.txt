@@ -1,7 +1,7 @@
-Agent Workspace
-Agent Workspace
+CODO HARNESS
+CODO HARNESS
 Add an API key to get started
-Configure official DeepSeek models to start using Agent Workspace
+Configure official DeepSeek models to start using CODO HARNESS
 Enter API key [password]
 Save and continue [disabled]
 Set up later

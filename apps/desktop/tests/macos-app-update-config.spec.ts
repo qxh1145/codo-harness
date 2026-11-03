@@ -15,7 +15,7 @@ const update = { publicUrl: 'https://desktop-updates.example.com/dsh-desk/feeds/
 async function fixture(): Promise<{ appPath: string; resourcesDir: string }> {
   const root = await mkdtemp(join(tmpdir(), 'desktop-macos-update-config-'))
   roots.push(root)
-  const appPath = join(root, 'Agent Workspace.app')
+  const appPath = join(root, 'CODO HARNESS.app')
   const resourcesDir = join(appPath, 'Contents', 'Resources')
   await mkdir(resourcesDir, { recursive: true })
   return { appPath, resourcesDir }
@@ -37,14 +37,14 @@ describe('macOS packaged updater configuration', () => {
 
   it('writes and verifies the fixed release feed before signing', async () => {
     const paths = await fixture()
-    expect(createMacOSAppUpdateConfig(update, 'agent-workspace-updater')).toEqual({
+    expect(createMacOSAppUpdateConfig(update, 'codo-harness-updater')).toEqual({
       provider: 'generic',
       url: update.publicUrl,
       channel: 'nightly',
-      updaterCacheDirName: 'agent-workspace-updater',
+      updaterCacheDirName: 'codo-harness-updater',
     })
-    await writeMacOSAppUpdateConfig(paths.resourcesDir, update, 'agent-workspace-updater')
-    await expect(verifyMacOSAppUpdateConfig(paths.appPath, update, 'agent-workspace-updater')).resolves.toBeUndefined()
+    await writeMacOSAppUpdateConfig(paths.resourcesDir, update, 'codo-harness-updater')
+    await expect(verifyMacOSAppUpdateConfig(paths.appPath, update, 'codo-harness-updater')).resolves.toBeUndefined()
   })
 
   it.each([
@@ -60,8 +60,8 @@ describe('macOS packaged updater configuration', () => {
   it('rejects another updater cache directory when the signed value is known', async () => {
     const paths = await fixture()
     await writeMacOSAppUpdateConfig(paths.resourcesDir, update, 'wrong-updater')
-    await expect(verifyMacOSAppUpdateConfig(paths.appPath, update, 'agent-workspace-updater'))
-      .rejects.toThrow(/expected agent-workspace-updater/u)
+    await expect(verifyMacOSAppUpdateConfig(paths.appPath, update, 'codo-harness-updater'))
+      .rejects.toThrow(/expected codo-harness-updater/u)
   })
 })
 

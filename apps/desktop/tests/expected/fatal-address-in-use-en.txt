@@ -1,6 +1,6 @@
-Agent Workspace is unavailable
+CODO HARNESS is unavailable
 The application could not start or stopped unexpectedly.
-Another Agent Workspace instance (such as dsh web or the desktop app) is running. They cannot start at the same time. Quit the other running Agent Workspace instance, then restart.
+Another CODO HARNESS instance (such as dsh web or the desktop app) is running. They cannot start at the same time. Quit the other running CODO HARNESS instance, then restart.
 The diagnostic report could not be saved. You can provide a screenshot of this dialog when requesting support.
 Exit
 Restart

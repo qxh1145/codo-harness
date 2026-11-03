@@ -269,7 +269,7 @@ export class CodexAppServerWire {
     object(await this.guarded(this.transport.request('initialize', {
       clientInfo: {
         name: 'deepseek-harness',
-        title: 'Agent Workspace',
+        title: 'CODO HARNESS',
         version: '0.0.1',
       },
       capabilities: {

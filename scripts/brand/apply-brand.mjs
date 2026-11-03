@@ -141,12 +141,13 @@ for (const [type, size] of [['ic07', 128], ['ic08', 256], ['ic09', 512], ['ic10'
 write('packages/experimental/cua-macos/native/DSHComputerUse.icns', packIcns(icnsEntries))
 
 // ── Installer and welcome artwork ───────────────────────────────────────────
+const glyphWidth = brand.productName === brand.productName.toUpperCase() ? 0.68 : 0.56
 const FONT = `font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-weight="600"`
 const lockup = (w, h, color) => {
   const fontSize = h * 0.22
   const mark = h * 0.3
   const gap = h * 0.08
-  const textWidth = brand.productName.length * fontSize * 0.56
+  const textWidth = brand.productName.length * fontSize * glyphWidth
   const left = (w - (mark + gap + textWidth)) / 2
   return svgDocument(w, h, placedLogo(left, (h - mark) / 2, mark, accent)
     + `<text x="${left + mark + gap}" y="${h / 2 + fontSize * 0.36}" ${FONT} font-size="${fontSize}" fill="${color}">${xml(brand.productName)}</text>`)
@@ -160,7 +161,7 @@ for (const [path, w, h, color] of [
 }
 
 const welcomeTextSize = 28
-const welcomeTextWidth = brand.productName.length * welcomeTextSize * 0.56
+const welcomeTextWidth = brand.productName.length * welcomeTextSize * glyphWidth
 const welcomeLeft = (472 - (40 + 12 + welcomeTextWidth)) / 2
 write('apps/desktop/renderer/assets/welcome-brand.svg', svgDocument(472, 40,
   `<style>:root{color:#111111}@media (prefers-color-scheme:dark){:root{color:#FFFFFF}}</style>`
@@ -238,6 +239,7 @@ for (const path of tracked) {
   let text = before.toString('utf8')
   for (const name of names) text = text.split(name).join(brand.productName)
   text = swapPrefixes(text).replaceAll('com.deepseek.harness', brand.appId)
+    .replaceAll(applied.appId ?? 'com.deepseek.harness', brand.appId).replaceAll(applied.publisher ?? 'Hangzhou DeepSeek Artificial Intelligence Co., Ltd.', brand.publisher)
     .replaceAll('Hangzhou DeepSeek Artificial Intelligence Co., Ltd.', brand.publisher)
     .replaceAll('DSH Local Build', brand.productName).replaceAll('Into the Unknown', brand.productName).replaceAll('探索未至之境', brand.productName)
   if (text !== before.toString('utf8')) write(path, text)
@@ -279,5 +281,6 @@ replaceIn('packages/client/ui-conversation/src/client/locales.ts', /(['"]hero\.h
 const desktopLocales = ['apps/desktop/src/locale.ts', ...tracked.filter(path => path.startsWith('apps/desktop/installer/locales/'))]
 for (const path of desktopLocales) replaceIn(path, /\bHarness\b/g, brand.productName)
 
-write(STATE_PATH, `${JSON.stringify({ productName: brand.productName, artifactName: brand.artifactName }, null, 2)}\n`)
+const { productName, shortName, publisher, appId, artifactName } = brand
+write(STATE_PATH, `${JSON.stringify({ productName, shortName, publisher, appId, artifactName }, null, 2)}\n`)
 console.log(`brand applied: ${brand.productName} (${textFiles} text files updated)`)

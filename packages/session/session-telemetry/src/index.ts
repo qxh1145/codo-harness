@@ -1,5 +1,5 @@
 /**
- * SessionTelemetryBackend Service Definition for the Agent Workspace.
+ * SessionTelemetryBackend Service Definition for the CODO HARNESS.
  *
  * This package owns the CAPTURE side of session-event reporting — the complete
  * one-record-per-event ledger mirror, what records carry, when

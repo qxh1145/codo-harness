@@ -537,7 +537,7 @@ export class HarnessSdkJsonRpcServer {
       case 'shutdown':
         return this.shutdown()
       default:
-        throw new Error(`unknown Agent Workspace SDK runtime method: ${method}`)
+        throw new Error(`unknown CODO HARNESS SDK runtime method: ${method}`)
     }
   }
 

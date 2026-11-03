@@ -1,4 +1,7 @@
 {
-  "productName": "Agent Workspace",
-  "artifactName": "agent-workspace"
+  "productName": "CODO HARNESS",
+  "shortName": "CODO",
+  "publisher": "CODO",
+  "appId": "com.codo.harness",
+  "artifactName": "codo-harness"
 }
