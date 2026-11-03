@@ -284,6 +284,10 @@
   overflow: hidden;
 }
 
+@keyframes runningLogoPulse {
+  50% { opacity: 0.35; }
+}
+
 .runningWhaleAnimated {
   display: none;
   position: absolute;
@@ -301,8 +305,9 @@
       background: currentColor;
       mask: url('../assets/running-whale@2x.png') center / 100% 100% no-repeat;
       mask-mode: alpha;
+      animation: runningLogoPulse 1.6s ease-in-out infinite;
       /* Keep animated-mask repaints on an icon-sized composited layer. */
-      will-change: transform;
+      will-change: opacity;
     }
 
     .runningWhaleStill {

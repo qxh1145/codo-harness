@@ -1,0 +1,8 @@
+{
+  "productName": "Agent Workspace",
+  "shortName": "Workspace",
+  "publisher": "Your Company",
+  "appId": "com.example.agentworkspace",
+  "artifactName": "agent-workspace",
+  "accentColor": "#2F5BEA"
+}

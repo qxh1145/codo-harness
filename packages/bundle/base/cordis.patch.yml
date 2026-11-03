@@ -40,8 +40,12 @@
     - id: session
       name: '@deepseek-ai/dsh-session'
 
+    # Enterprise fork: Session logs never accompany model requests.
     - id: session-log-deepseek
       name: '@deepseek-ai/dsh-session-log-deepseek'
+      disabled: true
+      config:
+        enabled: false
 
     - id: typert
       name: '@deepseek-ai/dsh-typert-registry'
@@ -82,8 +86,10 @@
     - id: agent
       name: '@deepseek-ai/dsh-agent'
 
+    # Enterprise fork: the installed-plugin inventory is not reported upstream.
     - id: plugin-package-inventory-deepseek
       name: '@deepseek-ai/dsh-plugin-package-inventory-deepseek'
+      disabled: true
 
     # The transport-independent default for Agents created by entry points.
     # Settings may supply a saved selection; consumers read it at creation time.
@@ -117,9 +123,13 @@
     - id: authorization
       name: '@deepseek-ai/dsh-authorization'
 
+    # Enterprise fork: no vendor account. The service stays mounted because
+    # Desktop's welcome flow reads it, but its origins resolve nowhere.
     - id: deepseek-account
       name: '@deepseek-ai/dsh-deepseek-account-platform'
       config:
+        platformOrigin: https://platform.invalid
+        inferenceOrigin: https://platform.invalid
         desktopPlatform: !!js "ctx.get('profileContext')?.name === 'desktop' && ['darwin', 'win32'].includes(process.platform) ? process.platform : null"
 
     - id: credentials
@@ -202,8 +212,11 @@
     - id: otel
       name: '@deepseek-ai/dsh-otel'
 
-    # OTel releases a Session-log prefix only after explicit user feedback,
-    # regardless of model provider. Ordinary activity never triggers capture.
+    # Enterprise fork: Session telemetry is DISABLED by default and has no vendor
+    # collector. Set DSH_TELEMETRY_MODE and DSH_TELEMETRY_OTLP_URL together to
+    # send it to your own OTLP endpoint.
+    # When enabled, OTel releases a Session-log prefix only after explicit user
+    # feedback, regardless of model provider. Ordinary activity never triggers capture.
     # DSH_TELEMETRY_OTLP_URL overrides the production endpoint. A non-empty
     # DSH_TELEMETRY_DISABLED — any value, including '0'/'false' — opts the
     # process out (the launchers patch the row disabled; config cannot disable
@@ -218,11 +231,11 @@
     - id: session-telemetry-otel
       name: '@deepseek-ai/dsh-session-telemetry-otel'
       config:
-        mode: !!js process.env.DSH_TELEMETRY_MODE || 'FEEDBACK_ONLY'
+        mode: !!js process.env.DSH_TELEMETRY_MODE || 'DISABLED'
         shutdownTimeoutMillis: 3000
         maxRequestBytes: 4000000
         exporter:
-          url: !!js process.env.DSH_TELEMETRY_OTLP_URL ?? 'https://dsh-otel-collector.deepseeksvc.com/v1/logs'
+          url: !!js process.env.DSH_TELEMETRY_OTLP_URL ?? 'https://telemetry.invalid/v1/logs'
           compression: gzip
           timeoutMillis: 1000
         processor:
@@ -523,6 +536,8 @@
     - id: system-prompt
       name: '@deepseek-ai/dsh-system-prompt'
       config:
+        # Enterprise fork: the model is not told it runs on the upstream product.
+        includeHarnessIdentity: false
         personaPrefix: ''
 
     # Agents created at startup. The base stays empty; raw overlays may create
@@ -544,5 +559,7 @@
     - id: llm-deepseek
       name: '@deepseek-ai/dsh-llm-deepseek-api-key'
 
+    # Enterprise fork: API-key access only, no vendor account sign-in.
     - id: llm-deepseek-account
       name: '@deepseek-ai/dsh-llm-deepseek-account'
+      disabled: true
