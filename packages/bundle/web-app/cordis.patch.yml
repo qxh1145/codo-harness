@@ -137,6 +137,38 @@
     - id: schedule
       name: '@deepseek-ai/dsh-schedule'
 
+    # Code navigation for JavaScript, TypeScript and Java. Servers that are not
+    # installed are skipped, and the lsp tool appears only when one is present.
+    - id: lsp
+      name: '@deepseek-ai/dsh-lsp'
+
+    - id: lsp-auto
+      name: '@deepseek-ai/dsh-lsp-auto'
+      config:
+        servers:
+          typescript:
+            command: typescript-language-server
+            args: ['--stdio']
+            extensionToLanguage:
+              '.ts': typescript
+              '.mts': typescript
+              '.cts': typescript
+              '.tsx': typescriptreact
+              '.js': javascript
+              '.mjs': javascript
+              '.cjs': javascript
+              '.jsx': javascriptreact
+          java:
+            command: jdtls
+            # Keeps Eclipse's .project and .settings files out of the repository.
+            args:
+              - --jvm-arg=-Xmx1G
+              - --jvm-arg=-Djava.import.generatesMetadataFilesAtProjectRoot=false
+            # jdtls runs on JDK 25 or newer. Set this when JAVA_HOME points at an older JDK.
+            env: !!js "process.env.CODO_LSP_JAVA_HOME ? { JAVA_HOME: process.env.CODO_LSP_JAVA_HOME } : {}"
+            extensionToLanguage:
+              '.java': java
+
     # Team accounts, channels and read-only @codo at /team. Members authenticate
     # there and never receive the owner Peer.
     - id: team-chat

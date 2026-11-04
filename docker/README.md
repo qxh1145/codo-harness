@@ -35,6 +35,19 @@ Pull request status and checks need the GitHub CLI signed in once:
 docker compose exec codo gh auth login
 ```
 
+## Code navigation
+
+The image includes language servers for JavaScript, TypeScript and Java, so agents can jump to definitions and find references instead of searching text.
+
+Outside Docker, install them on the machine and restart the harness:
+
+```sh
+npm install -g typescript-language-server typescript@6
+brew install jdtls
+```
+
+Java needs JDK 25 or newer. If your `JAVA_HOME` points at an older JDK, start the harness with `CODO_LSP_JAVA_HOME` set to a newer one. A language that has no server installed is skipped, and the tool disappears when none is installed.
+
 ## Keep it healthy
 
 - Update repositories with `git -C repos/<your-project> pull`. `@codo` reads what is on disk.
