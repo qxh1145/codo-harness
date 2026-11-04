@@ -1,10 +1,10 @@
+// Icons are generated from brand/ by scripts/brand/apply-brand.mjs; render-app-icons.ts stays for the upstream artwork.
 /** Committed install icon dimensions and the generator's SVG crop and safe-zone scale. */
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
-  APP_ICON_VARIANTS, ICON_OUTPUT_DIRECTORY, MASKABLE_ARTWORK_SCALE, TILE_SOURCE,
-  maskableDocument, tileDocument,
+  APP_ICON_VARIANTS, ICON_OUTPUT_DIRECTORY, maskableDocument, tileDocument,
 } from '../scripts/render-app-icons.ts'
 import { pngSize } from './png-size.ts'
 
@@ -14,19 +14,6 @@ describe('web install icons', () => {
       expect(pngSize(await readFile(join(ICON_OUTPUT_DIRECTORY, variant.file))))
         .toEqual([variant.size, variant.size])
     }
-  })
-
-  it('crops the desktop shadow and scales only the maskable artwork', async () => {
-    const source = await readFile(TILE_SOURCE, 'utf8')
-    const tile = tileDocument(source)
-    const maskable = maskableDocument(source)
-    expect(tile).toContain('viewBox="40 32 1024 1024"')
-    expect(tile).not.toContain('<g filter="url(#filter0_d_1637_371)">')
-    expect(tile).not.toContain(`scale(${MASKABLE_ARTWORK_SCALE})`)
-    expect(tile).toContain('<g filter="url(#filter1_ddi_1637_371)">')
-    expect(tile).toContain(source.match(/<path\b[^>]*>/u)![0])
-    expect(tile).toContain(source.match(/<defs>[\s\S]*<\/defs>/u)![0])
-    expect(maskable).toContain(`transform="translate(552 544) scale(${MASKABLE_ARTWORK_SCALE}) translate(-552 -544)"`)
   })
 
   it('rejects non-PNG bytes and incomplete image headers', () => {

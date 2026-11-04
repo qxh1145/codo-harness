@@ -1,0 +1,19 @@
+services:
+  codo:
+    build: .
+    restart: unless-stopped
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      CODO_PUBLIC_HOST: ${CODO_PUBLIC_HOST:-}
+      CODO_MAX_AGENT_JOBS: ${CODO_MAX_AGENT_JOBS:-2}
+    ports:
+      # Published on this machine only. The VPN or a reverse proxy gives the team access.
+      - 127.0.0.1:3080:3080
+    volumes:
+      - codo-data:/data
+      # Read-only, so nothing in the container can change these repositories.
+      - ./repos:/repos:ro
+
+volumes:
+  codo-data:

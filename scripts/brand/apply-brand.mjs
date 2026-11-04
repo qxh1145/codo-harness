@@ -80,6 +80,8 @@ write('apps/web/public/icon-512.png', await png(tile(512, 72), 512))
 write('apps/web/public/icon-maskable-512.png', await png(tile(512, 118), 512))
 write('apps/web/public/apple-touch-icon.png', await png(tile(512, 72), 180))
 
+write('packages/team/team-chat/assets/logo.svg', svgDocument(50, 50, placedLogo(1, 1, 48, accent)))
+
 // Running-status mask: only the alpha channel is read by the stylesheet.
 write('packages/client/ui-chat/src/client/assets/running-whale@2x.png',
   await png(svgDocument(28, 28, placedLogo(1, 1, 26, '#000000')), 28))
@@ -227,7 +229,7 @@ for (const path of tracked.filter(item => /^apps\/desktop\/scripts\/[^/]+\.(ts|m
 }
 
 // Tests and snapshots that assert shipped identity follow the same names.
-const testRoots = ['apps/desktop/tests/', 'packages/client/ui-primitives/tests/', 'packages/client/ui-sidebar/tests/',
+const testRoots = ['apps/cli/tests/plugin.spec.ts', 'apps/desktop/tests/', 'packages/client/ui-primitives/tests/', 'packages/client/ui-sidebar/tests/',
   'packages/client/ui-conversation/tests/', 'scripts/client-build-environment.client.spec.ts']
 const shortNameTests = ['packages/client/ui-chat/tests/chat-view.client.spec.tsx', 'packages/client/ui-entry-customization/tests/',
   'packages/client/ui-plugin-manager/tests/components.client.spec.tsx', 'packages/client/ui-plugin-market/tests/discover.client.spec.tsx',

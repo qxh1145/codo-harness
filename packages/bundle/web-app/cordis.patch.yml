@@ -137,6 +137,15 @@
     - id: schedule
       name: '@deepseek-ai/dsh-schedule'
 
+    # Team accounts, channels and read-only @codo at /team. Members authenticate
+    # there and never receive the owner Peer.
+    - id: team-chat
+      name: '@deepseek-ai/dsh-team-chat'
+      config:
+        dataDir: !!js process.env.CODO_TEAM_DATA_DIR
+        reposDir: !!js process.env.CODO_REPOS_DIR
+        maxAgentJobs: !!js Number(process.env.CODO_MAX_AGENT_JOBS ?? 2)
+
     # Configuration-surface reads and writes over Typert Remote. Each method
     # reports an actionable error when its settings-domain provider is absent.
     - id: ui-settings-account
@@ -345,6 +354,9 @@
     # Official occupants for the generic sidebar and conversation brand slots.
     - id: ui-brand-official
       name: '@deepseek-ai/dsh-client-ui-brand-official'
+
+    - id: ui-team-chat
+      name: '@deepseek-ai/dsh-client-ui-team-chat'
 
     - id: ui-attachment
       name: '@deepseek-ai/dsh-client-ui-attachment'
