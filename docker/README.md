@@ -27,6 +27,14 @@ tailscale serve --bg 3080
 3. Create a channel and enter the repository's folder name, such as `your-project`.
 4. Select **+** next to **Team** to make an invitation link for each teammate.
 
+## Connect GitHub
+
+Pull request status and checks need the GitHub CLI signed in once:
+
+```sh
+docker compose exec codo gh auth login
+```
+
 ## Keep it healthy
 
 - Update repositories with `git -C repos/<your-project> pull`. `@codo` reads what is on disk.

@@ -12,8 +12,10 @@ services:
       - 127.0.0.1:3080:3080
     volumes:
       - codo-data:/data
+      - codo-gh:/home/codo/.config/gh
       # Read-only, so nothing in the container can change these repositories.
       - ./repos:/repos:ro
 
 volumes:
   codo-data:
+  codo-gh:
